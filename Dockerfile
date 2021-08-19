@@ -1,7 +1,7 @@
-LABEL org.opencontainers.image.source https://github.com/castisdev/docker-rockylinux8
-
 # Pull base image
 FROM rockylinux/rockylinux:8
+
+LABEL org.opencontainers.image.source https://github.com/castisdev/docker-rockylinux8
 
 # Install EPEL repo
 RUN yum install -y epel-release; yum -y clean all
