@@ -8,5 +8,5 @@
 ### 사용하기
 
 ```
-$ sudo docker run -it --rm castis/rockylinux8
+$ sudo docker run -it --rm ghcr.io/castisdev/rockylinux8:1.9
 ```
