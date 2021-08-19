@@ -1,3 +1,5 @@
+LABEL org.opencontainers.image.source https://github.com/castisdev/docker-rockylinux8
+
 # Pull base image
 FROM rockylinux/rockylinux:8
 
