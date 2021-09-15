@@ -46,8 +46,8 @@ ADD install_gcctoolset10.sh /script/
 RUN /script/install_gcctoolset10.sh
 SHELL [ "scl", "enable", "gcc-toolset-10" ]
 
-ADD install_cmake3211.sh /script/
-RUN /script/install_cmake3211.sh
+ADD install_cmake3212.sh /script/
+RUN /script/install_cmake3212.sh
 
 ADD install_libbacktrace.sh /script/
 RUN /script/install_libbacktrace.sh
