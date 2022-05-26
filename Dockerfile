@@ -41,21 +41,23 @@ RUN yum install -y \
   ccache \
   libunwind-devel \
   libwebp-devel \
+  protobuf-compiler \
+  patch \
   && yum -y clean all
 
 ADD install_gcctoolset11.sh /script/
 RUN /script/install_gcctoolset11.sh
 SHELL [ "scl", "enable", "gcc-toolset-11" ]
 
-ADD install_cmake3222.sh /script/
-RUN /script/install_cmake3222.sh
+ADD install_cmake3232.sh /script/
+RUN /script/install_cmake3232.sh
 
 ADD install_libbacktrace.sh /script/
 RUN /script/install_libbacktrace.sh
 
-ADD install_boost178.sh /script/
-RUN /script/install_boost178.sh
-ENV Boost_DIR /usr/local/boost_1_78_0
+ADD install_boost179.sh /script/
+RUN /script/install_boost179.sh
+ENV Boost_DIR /usr/local/boost_1_79_0
 
 ADD install_cryptopp860.sh /script/
 RUN /script/install_cryptopp860.sh
@@ -69,20 +71,23 @@ RUN /script/install_python.sh
 ADD install_cpptools.sh /script/
 RUN /script/install_cpptools.sh
 
-ADD install_cppcheck27.sh /script/
-RUN /script/install_cppcheck27.sh
+ADD install_cppcheck28.sh /script/
+RUN /script/install_cppcheck28.sh
 
-ADD install_zsh581.sh /script/
-RUN /script/install_zsh581.sh
+ADD install_zsh59.sh /script/
+RUN /script/install_zsh59.sh
 
-ADD install_ninja1102.sh /script/
-RUN /script/install_ninja1102.sh
+ADD install_ninja1110.sh /script/
+RUN /script/install_ninja1110.sh
 
-ADD install_ffmpeg50.sh /script/
-RUN /script/install_ffmpeg50.sh
+ADD install_ffmpeg501.sh /script/
+RUN /script/install_ffmpeg501.sh
 
-ADD install_golang1177.sh /script/
-RUN /script/install_golang1177.sh
+ADD install_golang1182.sh /script/
+RUN /script/install_golang1182.sh
+
+ADD install_wrk420.sh /script/
+RUN /script/install_wrk420.sh
 
 # set timezone
 RUN ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
