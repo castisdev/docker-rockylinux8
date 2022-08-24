@@ -3,6 +3,9 @@ FROM rockylinux/rockylinux:8
 
 LABEL org.opencontainers.image.source https://github.com/castisdev/docker-rockylinux8
 
+# set timezone
+RUN ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
+
 # Install EPEL repo
 RUN yum install -y epel-release; yum -y clean all
 
@@ -14,6 +17,7 @@ RUN yum install -y \
   gcc-c++ \
   make \
   unzip \
+  openssl \
   openssl-devel \
   git \
   subversion \
@@ -49,21 +53,21 @@ ADD install_gcctoolset11.sh /script/
 RUN /script/install_gcctoolset11.sh
 SHELL [ "scl", "enable", "gcc-toolset-11" ]
 
-ADD install_cmake3232.sh /script/
-RUN /script/install_cmake3232.sh
+ADD install_cmake3241.sh /script/
+RUN /script/install_cmake3241.sh
 
 ADD install_libbacktrace.sh /script/
 RUN /script/install_libbacktrace.sh
 
-ADD install_boost179.sh /script/
-RUN /script/install_boost179.sh
-ENV Boost_DIR /usr/local/boost_1_79_0
+ADD install_boost180.sh /script/
+RUN /script/install_boost180.sh
+ENV Boost_DIR /usr/local/boost_1_80_0
 
-ADD install_cryptopp860.sh /script/
-RUN /script/install_cryptopp860.sh
+ADD install_cryptopp870.sh /script/
+RUN /script/install_cryptopp870.sh
 
-ADD install_googletest1110.sh /script/
-RUN /script/install_googletest1110.sh
+ADD install_googletest1121.sh /script/
+RUN /script/install_googletest1121.sh
 
 ADD install_python.sh /script/
 RUN /script/install_python.sh
@@ -80,17 +84,14 @@ RUN /script/install_zsh59.sh
 ADD install_ninja1110.sh /script/
 RUN /script/install_ninja1110.sh
 
-ADD install_ffmpeg501.sh /script/
-RUN /script/install_ffmpeg501.sh
+ADD install_ffmpeg51.sh /script/
+RUN /script/install_ffmpeg51.sh
 
-ADD install_golang1182.sh /script/
-RUN /script/install_golang1182.sh
+ADD install_golang119.sh /script/
+RUN /script/install_golang119.sh
 
 ADD install_wrk420.sh /script/
 RUN /script/install_wrk420.sh
-
-# set timezone
-RUN ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 
 # ctail
 RUN wget -O - https://raw.githubusercontent.com/castisdev/ctail/master/install.sh --no-check-certificate | bash
