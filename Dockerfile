@@ -53,8 +53,8 @@ ADD install_gcctoolset11.sh /script/
 RUN /script/install_gcctoolset11.sh
 SHELL [ "scl", "enable", "gcc-toolset-11" ]
 
-ADD install_cmake3241.sh /script/
-RUN /script/install_cmake3241.sh
+ADD install_cmake3242.sh /script/
+RUN /script/install_cmake3242.sh
 
 ADD install_libbacktrace.sh /script/
 RUN /script/install_libbacktrace.sh
@@ -75,20 +75,24 @@ RUN /script/install_python.sh
 ADD install_cpptools.sh /script/
 RUN /script/install_cpptools.sh
 
-ADD install_cppcheck28.sh /script/
-RUN /script/install_cppcheck28.sh
+ADD install_cppcheck29.sh /script/
+RUN /script/install_cppcheck29.sh
 
 ADD install_zsh59.sh /script/
 RUN /script/install_zsh59.sh
 
-ADD install_ninja1110.sh /script/
-RUN /script/install_ninja1110.sh
+ADD install_ninja1111.sh /script/
+RUN /script/install_ninja1111.sh
 
-ADD install_ffmpeg51.sh /script/
-RUN /script/install_ffmpeg51.sh
+ADD install_ffmpeg512.sh /script/
+RUN /script/install_ffmpeg512.sh
 
-ADD install_golang119.sh /script/
-RUN /script/install_golang119.sh
+ADD install_golang1192.sh /script/
+RUN /script/install_golang1192.sh
+
+# Set environment variables
+ENV HOME /root
+ENV PATH="${PATH}:${HOME}/go/bin:/usr/local/go/bin"
 
 ADD install_wrk420.sh /script/
 RUN /script/install_wrk420.sh
@@ -98,10 +102,6 @@ RUN wget -O - https://raw.githubusercontent.com/castisdev/ctail/master/install.s
 
 # Add root files
 ADD ./.bashrc /root/.bashrc
-
-# Set environment variables
-ENV HOME /root
-ENV PATH="${PATH}:${HOME}/go/bin:/usr/local/go/bin"
 
 # Define default command
 CMD ["scl", "enable", "gcc-toolset-11", "zsh"]
