@@ -49,12 +49,12 @@ RUN yum install -y \
   patch \
   && yum -y clean all
 
-ADD install_gcctoolset11.sh /script/
-RUN /script/install_gcctoolset11.sh
-SHELL [ "scl", "enable", "gcc-toolset-11" ]
+ADD install_gcctoolset12.sh /script/
+RUN /script/install_gcctoolset12.sh
+SHELL [ "scl", "enable", "gcc-toolset-12" ]
 
-ADD install_cmake3242.sh /script/
-RUN /script/install_cmake3242.sh
+ADD install_cmake3251.sh /script/
+RUN /script/install_cmake3251.sh
 
 ADD install_libbacktrace.sh /script/
 RUN /script/install_libbacktrace.sh
@@ -87,8 +87,8 @@ RUN /script/install_ninja1111.sh
 ADD install_ffmpeg512.sh /script/
 RUN /script/install_ffmpeg512.sh
 
-ADD install_golang1192.sh /script/
-RUN /script/install_golang1192.sh
+ADD install_golang1193.sh /script/
+RUN /script/install_golang1193.sh
 
 # Set environment variables
 ENV HOME /root
@@ -97,6 +97,9 @@ ENV PATH="${PATH}:${HOME}/go/bin:/usr/local/go/bin"
 ADD install_wrk420.sh /script/
 RUN /script/install_wrk420.sh
 
+ADD install_webrtc.sh /script/
+RUN /script/install_webrtc.sh
+
 # ctail
 RUN wget -O - https://raw.githubusercontent.com/castisdev/ctail/master/install.sh --no-check-certificate | bash
 
@@ -104,4 +107,4 @@ RUN wget -O - https://raw.githubusercontent.com/castisdev/ctail/master/install.s
 ADD ./.bashrc /root/.bashrc
 
 # Define default command
-CMD ["scl", "enable", "gcc-toolset-11", "zsh"]
+CMD ["scl", "enable", "gcc-toolset-12", "zsh"]
