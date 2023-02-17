@@ -16,3 +16,4 @@ alternatives --set python /usr/bin/python3
 install ninja /usr/local/bin
 cd ~
 rm -rf ninja-*
+ccache -C

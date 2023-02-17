@@ -43,3 +43,4 @@ ldconfig
 
 cd ~
 rm -rf ffmpeg-5.1.2*
+ccache -C
