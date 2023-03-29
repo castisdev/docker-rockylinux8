@@ -28,9 +28,9 @@ cd ~
 rm -rf opus-1.3.1*
 
 cd ~
-wget -nv --no-check-certificate https://ffmpeg.org/releases/ffmpeg-5.1.2.tar.bz2
-tar xf ffmpeg-5.1.2.tar.bz2
-cd ffmpeg-5.1.2
+wget -nv --no-check-certificate https://ffmpeg.org/releases/ffmpeg-6.0.tar.bz2
+tar xf ffmpeg-6.0.tar.bz2
+cd ffmpeg-6.0
 
 PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./configure --enable-shared --enable-libxml2 --enable-libopenh264 --enable-libopus
 make install -j$(nproc)
@@ -42,5 +42,5 @@ make install -j$(nproc)
 ldconfig
 
 cd ~
-rm -rf ffmpeg-5.1.2*
+rm -rf ffmpeg-6.0*
 ccache -C
