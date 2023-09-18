@@ -1,6 +1,6 @@
 #!/bin/bash -e
 set -x #echo on
-yum -y --enablerepo=powertools install libxml2-devel SDL2-devel alsa-lib-devel libXv-devel libX11-devel libXext-devel autoconf automake libtool yasm nasm bzip2; yum -y clean all
+yum -y --enablerepo=powertools install libxml2-devel SDL2-devel alsa-lib-devel libXv-devel libX11-devel libXext-devel autoconf automake libtool yasm nasm bzip2 fontconfig-devel freetype-devel fribidi-devel; yum -y clean all
 
 cd ~
 wget -nv --no-check-certificate --content-disposition https://github.com/cisco/openh264/archive/refs/tags/v2.3.1.tar.gz
@@ -32,11 +32,11 @@ wget -nv --no-check-certificate https://ffmpeg.org/releases/ffmpeg-6.0.tar.bz2
 tar xf ffmpeg-6.0.tar.bz2
 cd ffmpeg-6.0
 
-PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./configure --enable-shared --enable-libxml2 --enable-libopenh264 --enable-libopus
+PKG_CONFIG_PATH="/usr/local/openssl/lib64/pkgconfig:/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH" ./configure --enable-gpl --enable-version3 --enable-shared --enable-libxml2 --enable-openssl --enable-libopenh264 --enable-libopus --enable-libx264 --enable-libfontconfig --enable-libfreetype --enable-libfribidi
 make install -j$(nproc)
 echo "/usr/local/lib" >> /etc/ld.so.conf.d/ffmpeg.conf
 
-PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./configure --prefix=/usr/local/lib/ffmpeg_gpl --enable-gpl --enable-shared --enable-libxml2 --enable-libopenh264 --enable-libopus --enable-libx264
+PKG_CONFIG_PATH="/usr/local/openssl/lib64/pkgconfig:/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH" ./configure --prefix=/usr/local/lib/ffmpeg_lgpl --enable-shared --enable-libxml2 --enable-openssl --enable-libopenh264 --enable-libopus --enable-libfontconfig --enable-libfreetype --enable-libfribidi
 make install -j$(nproc)
 
 ldconfig
