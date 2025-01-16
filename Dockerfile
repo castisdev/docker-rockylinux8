@@ -22,7 +22,7 @@ RUN yum install -y \
   git \
   subversion \
   tar \
-  boost-devel \
+  # boost-devel \
   glibc-devel \
   libuuid-devel \
   gdb \
@@ -53,21 +53,21 @@ ADD install_gcctoolset13.sh /script/
 RUN /script/install_gcctoolset13.sh
 SHELL [ "scl", "enable", "gcc-toolset-13" ]
 
-ADD install_cmake3302.sh /script/
-RUN /script/install_cmake3302.sh
+ADD install_cmake396.sh /script/
+RUN /script/install_cmake396.sh
 
 ADD install_libbacktrace.sh /script/
 RUN /script/install_libbacktrace.sh
 
-ADD install_boost185.sh /script/
-RUN /script/install_boost185.sh
-ENV Boost_DIR /usr/local/boost_1_85_0
+ADD install_boost159.sh /script/
+RUN /script/install_boost159.sh
+ENV Boost_DIR /usr/local/boost_1_59_0
 
 ADD install_cryptopp890.sh /script/
 RUN /script/install_cryptopp890.sh
 
-ADD install_googletest1152.sh /script/
-RUN /script/install_googletest1152.sh
+# ADD install_googletest1152.sh /script/
+# RUN /script/install_googletest1152.sh
 
 ADD install_python.sh /script/
 RUN /script/install_python.sh
@@ -81,8 +81,8 @@ RUN /script/install_cppcheck2142.sh
 ADD install_zsh59.sh /script/
 RUN /script/install_zsh59.sh
 
-ADD install_ninja1121.sh /script/
-RUN /script/install_ninja1121.sh
+ADD install_ninja172.sh /script/
+RUN /script/install_ninja172.sh
 
 ADD install_openssl3014.sh /script/
 RUN /script/install_openssl3014.sh
