@@ -7,10 +7,10 @@ LABEL org.opencontainers.image.source https://github.com/castisdev/docker-rockyl
 RUN ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 
 # Install EPEL repo
-RUN yum install -y epel-release; yum -y clean all
+RUN dnf install -y epel-release; dnf -y clean all
 
 # Install
-RUN yum install -y \
+RUN dnf install -y \
   sudo \
   wget \
   gcc \
@@ -26,6 +26,7 @@ RUN yum install -y \
   glibc-devel \
   libuuid-devel \
   gdb \
+  gdb-gdbserver \
   valgrind \
   mariadb-devel \
   postgresql-server-devel \
@@ -42,32 +43,31 @@ RUN yum install -y \
   gperftools-devel \
   iproute \
   net-tools \
-  ccache \
   libunwind-devel \
   libwebp-devel \
   protobuf-compiler \
   patch \
-  && yum -y clean all
+  && dnf -y clean all
 
-ADD install_gcctoolset13.sh /script/
-RUN /script/install_gcctoolset13.sh
-SHELL [ "scl", "enable", "gcc-toolset-13" ]
+ADD install_gcctoolset14.sh /script/
+RUN /script/install_gcctoolset14.sh
+ENV BUILD_TOOLSET_ENABLE=/opt/rh/gcc-toolset-14/enable
 
-ADD install_cmake3302.sh /script/
-RUN /script/install_cmake3302.sh
+ADD install_cmake3318.sh /script/
+RUN /script/install_cmake3318.sh
 
 ADD install_libbacktrace.sh /script/
 RUN /script/install_libbacktrace.sh
 
-ADD install_boost185.sh /script/
-RUN /script/install_boost185.sh
-ENV Boost_DIR /usr/local/boost_1_85_0
+ADD install_boost188.sh /script/
+RUN /script/install_boost188.sh
+ENV Boost_DIR /usr/local/boost_1_88_0
 
 ADD install_cryptopp890.sh /script/
 RUN /script/install_cryptopp890.sh
 
-ADD install_googletest1152.sh /script/
-RUN /script/install_googletest1152.sh
+ADD install_googletest1170.sh /script/
+RUN /script/install_googletest1170.sh
 
 ADD install_python.sh /script/
 RUN /script/install_python.sh
@@ -75,26 +75,26 @@ RUN /script/install_python.sh
 ADD install_cpptools.sh /script/
 RUN /script/install_cpptools.sh
 
-ADD install_cppcheck2142.sh /script/
-RUN /script/install_cppcheck2142.sh
+ADD install_cppcheck2180.sh /script/
+RUN /script/install_cppcheck2180.sh
 
-ADD install_zsh59.sh /script/
-RUN /script/install_zsh59.sh
+ADD install_zsh.sh /script/
+RUN /script/install_zsh.sh
 
-ADD install_ninja1121.sh /script/
-RUN /script/install_ninja1121.sh
+ADD install_ninja1131.sh /script/
+RUN /script/install_ninja1131.sh
 
-ADD install_openssl3014.sh /script/
-RUN /script/install_openssl3014.sh
+ADD install_openssl3017.sh /script/
+RUN /script/install_openssl3017.sh
 
 ADD install_srt154.sh /script/
 RUN /script/install_srt154.sh
 
-ADD install_ffmpeg702.sh /script/
-RUN /script/install_ffmpeg702.sh
+ADD install_ffmpeg703.sh /script/
+RUN /script/install_ffmpeg703.sh
 
-ADD install_golang1230.sh /script/
-RUN /script/install_golang1230.sh
+ADD install_golang1246.sh /script/
+RUN /script/install_golang1246.sh
 
 # Set environment variables
 ENV HOME /root
@@ -110,4 +110,4 @@ RUN wget -O - https://raw.githubusercontent.com/castisdev/ctail/master/install.s
 ADD ./.bashrc /root/.bashrc
 
 # Define default command
-CMD ["scl", "enable", "gcc-toolset-13", "zsh"]
+CMD ["scl", "enable", "gcc-toolset-14", "zsh"]

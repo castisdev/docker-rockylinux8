@@ -1,14 +1,15 @@
 #!/bin/bash -e
 set -x #echo on
-yum -y --enablerepo=powertools install libxml2-devel SDL2-devel alsa-lib-devel libXv-devel libX11-devel libXext-devel autoconf automake libtool yasm nasm bzip2 fontconfig-devel freetype-devel fribidi-devel harfbuzz-devel; yum -y clean all
+dnf -y --enablerepo=powertools install libxml2-devel SDL2-devel alsa-lib-devel libXv-devel libX11-devel libXext-devel autoconf automake libtool yasm nasm bzip2 fontconfig-devel freetype-devel fribidi-devel harfbuzz-devel
+dnf -y clean all
 
 cd ~
-wget -nv --no-check-certificate --content-disposition https://github.com/cisco/openh264/archive/refs/tags/v2.4.1.tar.gz
-tar xf openh264-2.4.1.tar.gz
-cd openh264-2.4.1
+wget -nv --no-check-certificate --content-disposition https://github.com/cisco/openh264/archive/refs/tags/v2.6.0.tar.gz
+tar xf openh264-2.6.0.tar.gz
+cd openh264-2.6.0
 make install -j$(nproc)
 cd ~
-rm -rf openh264-2.4.1*
+rm -rf openh264-2.6.0*
 
 cd ~
 git clone --branch stable --depth 1 https://code.videolan.org/videolan/x264.git
@@ -19,13 +20,13 @@ cd ~
 rm -rf x264*
 
 cd ~
-wget -nv --no-check-certificate --content-disposition https://github.com/xiph/opus/releases/download/v1.4/opus-1.4.tar.gz
-tar xf opus-1.4.tar.gz
-cd opus-1.4
+wget -nv --no-check-certificate --content-disposition https://github.com/xiph/opus/releases/download/v1.5.2/opus-1.5.2.tar.gz
+tar xf opus-1.5.2.tar.gz
+cd opus-1.5.2
 ./configure --enable-shared
 make install -j$(nproc)
 cd ~
-rm -rf opus-1.4*
+rm -rf opus-1.5.2*
 
 cd ~
 wget -nv --no-check-certificate --content-disposition https://github.com/videolan/x265/archive/refs/tags/3.4.tar.gz
@@ -45,9 +46,9 @@ cd ~
 rm -rf nv-codec-headers*
 
 cd ~
-wget -nv --no-check-certificate https://ffmpeg.org/releases/ffmpeg-7.0.2.tar.bz2
-tar xf ffmpeg-7.0.2.tar.bz2
-cd ffmpeg-7.0.2
+wget -nv --no-check-certificate https://ffmpeg.org/releases/ffmpeg-7.0.3.tar.bz2
+tar xf ffmpeg-7.0.3.tar.bz2
+cd ffmpeg-7.0.3
 
 PKG_CONFIG_PATH="/usr/local/lib64/pkgconfig:/usr/local/openssl/lib64/pkgconfig:/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH" ./configure --enable-gpl --enable-version3 --enable-shared --enable-libxml2 --enable-openssl --enable-libopenh264 --enable-libopus --enable-libx264 --enable-libx265 --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libsrt
 make install -j$(nproc)
@@ -62,5 +63,4 @@ make install -j$(nproc)
 ldconfig
 
 cd ~
-rm -rf ffmpeg-7.0.2*
-ccache -C
+rm -rf ffmpeg-7.0.3*
