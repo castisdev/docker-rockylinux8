@@ -4,14 +4,14 @@ source ${BUILD_TOOLSET_ENABLE}
 dnf -y install bzip2-devel which valgrind-devel patch
 dnf -y clean all
 cd ~
-wget -nv --no-check-certificate https://archives.boost.io/release/1.88.0/source/boost_1_88_0.tar.gz
-tar xzf boost_1_88_0.tar.gz
-cd boost_1_88_0
+wget -nv --no-check-certificate https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.gz
+tar xzf boost_1_87_0.tar.gz
+cd boost_1_87_0
 
-./bootstrap.sh --prefix=/usr/local/boost_1_88_0
+./bootstrap.sh --prefix=/usr/local/boost_1_87_0
 ./b2 cxxstd=20 --without-python -j$(nproc) install
 
-./bootstrap.sh --prefix=/usr/local/boost_1_88_0_valgrind
+./bootstrap.sh --prefix=/usr/local/boost_1_87_0_valgrind
 ./b2 cxxstd=20 --without-python -j$(nproc) valgrind=on install
 
 cd ~
