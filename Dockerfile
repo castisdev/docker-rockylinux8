@@ -17,8 +17,8 @@ RUN dnf install -y \
   gcc-c++ \
   make \
   unzip \
-  openssl \
-  openssl-devel \
+  openssl3 \
+  openssl3-devel \
   git \
   subversion \
   tar \
@@ -49,19 +49,19 @@ RUN dnf install -y \
   patch \
   && dnf -y clean all
 
-ADD install_gcctoolset14.sh /script/
-RUN /script/install_gcctoolset14.sh
-ENV BUILD_TOOLSET_ENABLE=/opt/rh/gcc-toolset-14/enable
+ADD install_gcctoolset15.sh /script/
+RUN /script/install_gcctoolset15.sh
+ENV BUILD_TOOLSET_ENABLE=/opt/rh/gcc-toolset-15/enable
 
-ADD install_cmake3318.sh /script/
-RUN /script/install_cmake3318.sh
+ADD install_cmake33110.sh /script/
+RUN /script/install_cmake33110.sh
 
 ADD install_libbacktrace.sh /script/
 RUN /script/install_libbacktrace.sh
 
-ADD install_boost187.sh /script/
-RUN /script/install_boost187.sh
-ENV Boost_DIR /usr/local/boost_1_87_0
+ADD install_boost190.sh /script/
+RUN /script/install_boost190.sh
+ENV Boost_DIR /usr/local/boost_1_90_0
 
 ADD install_cryptopp890.sh /script/
 RUN /script/install_cryptopp890.sh
@@ -75,26 +75,26 @@ RUN /script/install_python.sh
 ADD install_cpptools.sh /script/
 RUN /script/install_cpptools.sh
 
-ADD install_cppcheck2180.sh /script/
-RUN /script/install_cppcheck2180.sh
+ADD install_cppcheck2190.sh /script/
+RUN /script/install_cppcheck2190.sh
 
 ADD install_zsh.sh /script/
 RUN /script/install_zsh.sh
 
-ADD install_ninja1131.sh /script/
-RUN /script/install_ninja1131.sh
+ADD install_ninja1132.sh /script/
+RUN /script/install_ninja1132.sh
 
-ADD install_openssl3017.sh /script/
-RUN /script/install_openssl3017.sh
+# ADD install_openssl3017.sh /script/
+# RUN /script/install_openssl3017.sh
 
 ADD install_srt154.sh /script/
 RUN /script/install_srt154.sh
 
-ADD install_ffmpeg703.sh /script/
-RUN /script/install_ffmpeg703.sh
+ADD install_ffmpeg801.sh /script/
+RUN /script/install_ffmpeg801.sh
 
-ADD install_golang1246.sh /script/
-RUN /script/install_golang1246.sh
+ADD install_golang1255.sh /script/
+RUN /script/install_golang1255.sh
 
 # Set environment variables
 ENV HOME /root
@@ -110,4 +110,4 @@ RUN wget -O - https://raw.githubusercontent.com/castisdev/ctail/master/install.s
 ADD ./.bashrc /root/.bashrc
 
 # Define default command
-CMD ["scl", "enable", "gcc-toolset-14", "zsh"]
+CMD ["scl", "enable", "gcc-toolset-15", "zsh"]
