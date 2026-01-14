@@ -46,9 +46,9 @@ cd ~
 rm -rf nv-codec-headers*
 
 cd ~
-wget -nv --no-check-certificate https://ffmpeg.org/releases/ffmpeg-7.1.3.tar.bz2
-tar xf ffmpeg-7.1.3.tar.bz2
-cd ffmpeg-7.1.3
+wget -nv --no-check-certificate https://ffmpeg.org/releases/ffmpeg-8.0.1.tar.bz2
+tar xf ffmpeg-8.0.1.tar.bz2
+cd ffmpeg-8.0.1
 
 mkdir -p ./pc_compat
 ln -s /usr/lib64/pkgconfig/openssl3.pc ./pc_compat/openssl.pc
@@ -66,4 +66,4 @@ make install -j$(nproc)
 ldconfig
 
 cd ~
-rm -rf ffmpeg-7.1.3*
+rm -rf ffmpeg-8.0.1*

@@ -87,8 +87,8 @@ RUN /script/install_ninja1132.sh
 ADD install_srt154.sh /script/
 RUN /script/install_srt154.sh
 
-ADD install_ffmpeg713.sh /script/
-RUN /script/install_ffmpeg713.sh
+ADD install_ffmpeg801.sh /script/
+RUN /script/install_ffmpeg801.sh
 
 ADD install_golang1255.sh /script/
 RUN /script/install_golang1255.sh
