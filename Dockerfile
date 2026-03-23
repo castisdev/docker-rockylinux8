@@ -1,5 +1,5 @@
 # Pull base image
-FROM nvidia/cuda:12.9.1-devel-rockylinux8
+FROM nvidia/cuda:13.2.0-devel-rockylinux8
 
 LABEL org.opencontainers.image.source https://github.com/castisdev/docker-rockylinux8
 
@@ -53,8 +53,8 @@ ADD install_gcctoolset15.sh /script/
 RUN /script/install_gcctoolset15.sh
 ENV BUILD_TOOLSET_ENABLE=/opt/rh/gcc-toolset-15/enable
 
-ADD install_cmake33110.sh /script/
-RUN /script/install_cmake33110.sh
+ADD install_cmake33111.sh /script/
+RUN /script/install_cmake33111.sh
 
 ADD install_libbacktrace.sh /script/
 RUN /script/install_libbacktrace.sh
@@ -75,8 +75,8 @@ RUN /script/install_python.sh
 ADD install_cpptools.sh /script/
 RUN /script/install_cpptools.sh
 
-ADD install_cppcheck2190.sh /script/
-RUN /script/install_cppcheck2190.sh
+ADD install_cppcheck2200.sh /script/
+RUN /script/install_cppcheck2200.sh
 
 ADD install_zsh.sh /script/
 RUN /script/install_zsh.sh
@@ -87,11 +87,11 @@ RUN /script/install_ninja1132.sh
 ADD install_srt154.sh /script/
 RUN /script/install_srt154.sh
 
-ADD install_ffmpeg801.sh /script/
-RUN /script/install_ffmpeg801.sh
+ADD install_ffmpeg81.sh /script/
+RUN /script/install_ffmpeg81.sh
 
-ADD install_golang1255.sh /script/
-RUN /script/install_golang1255.sh
+ADD install_golang1261.sh /script/
+RUN /script/install_golang1261.sh
 
 # Set environment variables
 ENV HOME /root
