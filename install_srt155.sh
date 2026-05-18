@@ -4,9 +4,9 @@ source ${BUILD_TOOLSET_ENABLE}
 cd ~
 dnf -y install tcl
 dnf -y clean all
-wget -nv --no-check-certificate --content-disposition https://github.com/Haivision/srt/archive/refs/tags/v1.5.4.tar.gz
-tar xvf srt-1.5.4.tar.gz
-cd srt-1.5.4
+wget -nv --no-check-certificate --content-disposition https://github.com/Haivision/srt/archive/refs/tags/v1.5.5.tar.gz
+tar xvf srt-1.5.5.tar.gz
+cd srt-1.5.5
 
 mkdir -p ./pc_compat
 ln -s /usr/lib64/pkgconfig/openssl3.pc ./pc_compat/openssl.pc
@@ -16,4 +16,4 @@ make install -j$(nproc)
 echo "/usr/local/lib64" >> /etc/ld.so.conf.d/srt.conf
 ldconfig
 cd ~
-rm -rf srt-1.5.4*
+rm -rf srt-1.5.5*

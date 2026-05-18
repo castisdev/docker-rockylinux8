@@ -1,5 +1,5 @@
 # Pull base image
-FROM nvidia/cuda:13.2.0-devel-rockylinux8
+FROM nvidia/cuda:13.2.1-devel-rockylinux8
 
 LABEL org.opencontainers.image.source https://github.com/castisdev/docker-rockylinux8
 
@@ -59,9 +59,9 @@ RUN /script/install_cmake33111.sh
 ADD install_libbacktrace.sh /script/
 RUN /script/install_libbacktrace.sh
 
-ADD install_boost190.sh /script/
-RUN /script/install_boost190.sh
-ENV Boost_DIR /usr/local/boost_1_90_0
+ADD install_boost191.sh /script/
+RUN /script/install_boost191.sh
+ENV Boost_DIR /usr/local/boost_1_91_0
 
 ADD install_cryptopp890.sh /script/
 RUN /script/install_cryptopp890.sh
@@ -84,14 +84,14 @@ RUN /script/install_zsh.sh
 ADD install_ninja1132.sh /script/
 RUN /script/install_ninja1132.sh
 
-ADD install_srt154.sh /script/
-RUN /script/install_srt154.sh
+ADD install_srt155.sh /script/
+RUN /script/install_srt155.sh
 
-ADD install_ffmpeg81.sh /script/
-RUN /script/install_ffmpeg81.sh
+ADD install_ffmpeg811.sh /script/
+RUN /script/install_ffmpeg811.sh
 
-ADD install_golang1261.sh /script/
-RUN /script/install_golang1261.sh
+ADD install_golang1263.sh /script/
+RUN /script/install_golang1263.sh
 
 # Set environment variables
 ENV HOME /root
