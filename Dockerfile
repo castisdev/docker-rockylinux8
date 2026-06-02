@@ -6,8 +6,10 @@ LABEL org.opencontainers.image.source https://github.com/castisdev/docker-rockyl
 # set timezone
 RUN ln -snf /usr/share/zoneinfo/Asia/Seoul /etc/localtime
 
-# Install EPEL repo
-RUN dnf install -y epel-release; dnf -y clean all
+# Install EPEL repo + enable PowerTools (permanent)
+RUN dnf install -y epel-release dnf-plugins-core \
+ && dnf config-manager --set-enabled powertools \
+ && dnf -y clean all
 
 # Install
 RUN dnf install -y \

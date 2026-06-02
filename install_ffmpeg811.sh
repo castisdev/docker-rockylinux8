@@ -1,6 +1,6 @@
 #!/bin/bash -e
 set -x #echo on
-dnf -y --enablerepo=powertools install libxml2-devel SDL2-devel alsa-lib-devel libXv-devel libX11-devel libXext-devel autoconf automake libtool yasm nasm bzip2 fontconfig-devel freetype-devel fribidi-devel harfbuzz-devel cppzmq-devel meson
+dnf -y install libxml2-devel SDL2-devel alsa-lib-devel libXv-devel libX11-devel libXext-devel autoconf automake libtool yasm nasm bzip2 fontconfig-devel freetype-devel fribidi-devel harfbuzz-devel cppzmq-devel meson
 dnf -y clean all
 
 cd ~
