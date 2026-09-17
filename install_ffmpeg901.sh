@@ -29,39 +29,39 @@ cd ~
 rm -rf opus-1.5.2*
 
 cd ~
-wget -nv --no-check-certificate --content-disposition https://github.com/videolan/x265/archive/refs/tags/3.4.tar.gz
-tar xvf x265-3.4.tar.gz
-cd x265-3.4/build/linux
+wget -nv --no-check-certificate --content-disposition https://bitbucket.org/multicoreware/x265_git/downloads/x265_4.2.tar.gz
+tar xvf x265_4.2.tar.gz
+cd x265_4.2/build/linux
 # ./make-Makefiles.bash
 cmake -GNinja ../../source
 ninja install
 cd ~
-rm -rf x265-3.4*
+rm -rf x265_4.2*
 
 cd ~
-wget -nv --no-check-certificate --content-disposition https://github.com/webmproject/libvpx/archive/refs/tags/v1.16.0.tar.gz
-tar xf libvpx-1.16.0.tar.gz
-cd libvpx-1.16.0
+wget -nv --no-check-certificate --content-disposition https://github.com/webmproject/libvpx/archive/refs/tags/v1.17.0.tar.gz
+tar xf libvpx-1.17.0.tar.gz
+cd libvpx-1.17.0
 ./configure --enable-shared --disable-examples --disable-unit-tests --enable-vp9-highbitdepth
 make install -j$(nproc)
 cd ~
-rm -rf libvpx-1.16.0*
+rm -rf libvpx-1.17.0*
 
 cd ~
-wget -nv --no-check-certificate --content-disposition https://github.com/videolan/dav1d/archive/refs/tags/1.5.3.tar.gz
-tar xf dav1d-1.5.3.tar.gz
-cd dav1d-1.5.3
+wget -nv --no-check-certificate --content-disposition https://github.com/videolan/dav1d/archive/refs/tags/1.5.4.tar.gz
+tar xf dav1d-1.5.4.tar.gz
+cd dav1d-1.5.4
 meson setup build --buildtype release --default-library shared
 ninja -C build install
 cd ~
-rm -rf dav1d-1.5.3*
+rm -rf dav1d-1.5.4*
 
 cd ~
-wget -nv --no-check-certificate --content-disposition https://gitlab.com/AOMediaCodec/SVT-AV1/-/archive/v4.1.0/SVT-AV1-v4.1.0.tar.gz
-tar xf SVT-AV1-v4.1.0.tar.gz
-cmake -S SVT-AV1-v4.1.0 -B SVT-AV1-v4.1.0/Build -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release
-cmake --build SVT-AV1-v4.1.0/Build --target install -j$(nproc)
-rm -rf SVT-AV1-v4.1.0*
+wget -nv --no-check-certificate --content-disposition https://gitlab.com/AOMediaCodec/SVT-AV1/-/archive/v4.2.0/SVT-AV1-v4.2.0.tar.gz
+tar xf SVT-AV1-v4.2.0.tar.gz
+cmake -S SVT-AV1-v4.2.0 -B SVT-AV1-v4.2.0/Build -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release
+cmake --build SVT-AV1-v4.2.0/Build --target install -j$(nproc)
+rm -rf SVT-AV1-v4.2.0*
 
 cd ~
 git clone https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
@@ -71,9 +71,9 @@ cd ~
 rm -rf nv-codec-headers*
 
 cd ~
-wget -nv --no-check-certificate https://ffmpeg.org/releases/ffmpeg-8.1.1.tar.bz2
-tar xf ffmpeg-8.1.1.tar.bz2
-cd ffmpeg-8.1.1
+wget -nv --no-check-certificate https://ffmpeg.org/releases/ffmpeg-9.0.1.tar.bz2
+tar xf ffmpeg-9.0.1.tar.bz2
+cd ffmpeg-9.0.1
 
 mkdir -p ./pc_compat
 ln -s /usr/lib64/pkgconfig/openssl3.pc ./pc_compat/openssl.pc
@@ -94,4 +94,4 @@ gcc -I. tools/zmqsend.c -o zmqsend -L./libavutil -lavutil -lzmq
 cp zmqsend /usr/local/bin
 
 cd ~
-rm -rf ffmpeg-8.1.1*
+rm -rf ffmpeg-9.0.1*
