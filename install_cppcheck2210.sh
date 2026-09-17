@@ -4,7 +4,7 @@ source ${BUILD_TOOLSET_ENABLE}
 cd ~
 dnf -y install bzip2
 dnf -y clean all
-wget -nv --no-check-certificate --content-disposition https://github.com/danmar/cppcheck/archive/2.21.0.tar.gz
+wget -nv --no-check-certificate --content-disposition https://github.com/cppcheck-opensource/cppcheck/archive/2.21.0.tar.gz
 tar xf cppcheck-2.21.0.tar.gz
 cd cppcheck-2.21.0
 mkdir build;cd build;cmake ..;make install -j$(nproc)
