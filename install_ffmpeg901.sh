@@ -1,6 +1,6 @@
 #!/bin/bash -e
 set -x #echo on
-dnf -y install libxml2-devel SDL2-devel alsa-lib-devel libXv-devel libX11-devel libXext-devel autoconf automake libtool yasm nasm bzip2 fontconfig-devel freetype-devel fribidi-devel harfbuzz-devel cppzmq-devel meson
+dnf -y install libxml2-devel SDL2-devel alsa-lib-devel libXv-devel libX11-devel libXext-devel autoconf automake libtool yasm nasm bzip2 fontconfig-devel freetype-devel fribidi-devel harfbuzz-devel cppzmq-devel meson clang
 dnf -y clean all
 
 cd ~
@@ -85,7 +85,7 @@ echo "/usr/local/lib" >> /etc/ld.so.conf.d/ffmpeg.conf
 PKG_CONFIG_PATH="/usr/local/lib64/pkgconfig:$(pwd)/pc_compat:/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH" ./configure --prefix=/usr/local/lib/ffmpeg_lgpl --enable-shared --enable-libxml2 --enable-openssl --enable-libopenh264 --enable-libopus --enable-libvpx --enable-libdav1d --enable-libsvtav1 --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libsrt --enable-libzmq
 make install -j$(nproc)
 
-PKG_CONFIG_PATH="/usr/local/lib64/pkgconfig:$(pwd)/pc_compat:/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH" ./configure --prefix=/usr/local/lib/ffmpeg_nv --enable-gpl --enable-version3 --enable-shared --enable-libxml2 --enable-openssl --enable-libopenh264 --enable-libopus --enable-libx264 --enable-libx265 --enable-libvpx --enable-libdav1d --enable-libsvtav1 --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libsrt --enable-libzmq --enable-nonfree --enable-cuda-nvcc --extra-cflags=-I/usr/local/cuda/include --extra-ldflags=-L/usr/local/cuda/lib64
+PKG_CONFIG_PATH="/usr/local/lib64/pkgconfig:$(pwd)/pc_compat:/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH" ./configure --prefix=/usr/local/lib/ffmpeg_nv --enable-gpl --enable-version3 --enable-shared --enable-libxml2 --enable-openssl --enable-libopenh264 --enable-libopus --enable-libx264 --enable-libx265 --enable-libvpx --enable-libdav1d --enable-libsvtav1 --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libharfbuzz --enable-libsrt --enable-libzmq --enable-cuda-llvm --extra-cflags=-I/usr/local/cuda/include --extra-ldflags=-L/usr/local/cuda/lib64
 make install -j$(nproc)
 
 ldconfig
